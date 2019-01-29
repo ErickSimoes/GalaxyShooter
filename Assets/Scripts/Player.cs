@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public float speed;
+    [SerializeField]
+    private float speed;
     private float horizontalInput;
     private float verticalInput;
 
-    public float xMax;
-    public float yMax;
+    [SerializeField]
+    private float xMax;
+    [SerializeField]
+    private float yMax;
     
     void Start() {
         transform.position = new Vector3(0, 0, 0);
