@@ -13,6 +13,9 @@ public class Player : MonoBehaviour {
     private float xMax;
     [SerializeField]
     private float yMax;
+
+    [SerializeField]
+    private GameObject laserPrefab;
     
     void Start() {
         transform.position = new Vector3(0, 0, 0);
@@ -20,6 +23,10 @@ public class Player : MonoBehaviour {
 
     void Update() {
         Movement();
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     private void Movement() {
