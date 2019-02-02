@@ -28,13 +28,19 @@ public class Player : MonoBehaviour {
     void Update() {
         Movement();
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire) {
-			nextFire = Time.time + fireRate;
-            Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f), Quaternion.identity);
-        }
-    }
+        if (Input.GetKeyDown(KeyCode.Space)) {
+			Shoot();
+		}
+	}
 
-    private void Movement() {
+	private void Shoot() {
+		if (Time.time > nextFire) {
+			nextFire = Time.time + fireRate;
+			Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f), Quaternion.identity);
+		}
+	}
+
+	private void Movement() {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
