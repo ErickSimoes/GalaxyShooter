@@ -5,17 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     [SerializeField]
-    private float speed;
+    private float speed = 5;
     private float horizontalInput;
     private float verticalInput;
 
     [SerializeField]
-    private float xMax;
+    private float xMax = 8.2f;
     [SerializeField]
-    private float yMax;
+    private float yMax = 4.1f;
 
     [SerializeField]
-    private GameObject laserPrefab;
+    private GameObject laserPrefab = null;
 
 	[SerializeField]
 	private float fireRate = 0.25f;
