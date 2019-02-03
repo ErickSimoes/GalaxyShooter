@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	private float fireRate = 0.25f;
 	private float nextFire = 0.0f;
+
+	public bool canTripleShot = false;
     
     void Start() {
         transform.position = new Vector3(0, 0, 0);
@@ -37,6 +40,11 @@ public class Player : MonoBehaviour {
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
 			Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f), Quaternion.identity);
+
+			if (canTripleShot) {
+				Instantiate(laserPrefab, transform.position + new Vector3(-0.55f, -0.03f), Quaternion.identity);
+				Instantiate(laserPrefab, transform.position + new Vector3(0.55f, -0.03f), Quaternion.identity);
+			}
 		}
 	}
 

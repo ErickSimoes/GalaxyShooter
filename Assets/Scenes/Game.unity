@@ -291,6 +291,8 @@ MonoBehaviour:
   yMax: 4.1
   laserPrefab: {fileID: 783159286718348467, guid: 5eac6fd3874d48f46ab74f66a91a4ab1,
     type: 3}
+  fireRate: 0.25
+  canTripleShot: 0
 --- !u!1 &877054791
 GameObject:
   m_ObjectHideFlags: 0
