@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class PlayerBehaviour : MonoBehaviour {
 
     [SerializeField]
     private float speed = 5;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space)) {
 			Shoot();
+
 		}
 	}
 
