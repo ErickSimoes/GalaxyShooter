@@ -16,8 +16,11 @@ public class PowerupBehaviour : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 
-		collision.GetComponent<PlayerBehaviour>().canTripleShot = true;
+		if (collision.tag == "Player") {
+			collision.GetComponent<PlayerBehaviour>().canTripleShot = true;
+		}
 
 		Destroy(this.gameObject);
+
 	}
 }
