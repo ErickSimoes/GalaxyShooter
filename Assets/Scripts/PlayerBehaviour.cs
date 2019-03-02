@@ -23,8 +23,9 @@ public class PlayerBehaviour : MonoBehaviour {
 	private float nextFire = 0.0f;
 
 	public bool canTripleShot = false;
-    
-    void Start() {
+	private float tripleShotTime = 5.0f;
+
+	void Start() {
         transform.position = new Vector3(0, 0, 0);
     }
 
@@ -65,5 +66,16 @@ public class PlayerBehaviour : MonoBehaviour {
         } else if (transform.position.y <= -yMax) {
             transform.position = new Vector3(transform.position.x, yMax);
         }
+
     }
+
+	public void TripleShotPowerOn() {
+		canTripleShot = true;
+		StartCoroutine(TripleShotPowerDownRoutine());
+	}
+
+	IEnumerator TripleShotPowerDownRoutine() {
+		yield return new WaitForSeconds(tripleShotTime);
+		canTripleShot = false;
+	}
 }
