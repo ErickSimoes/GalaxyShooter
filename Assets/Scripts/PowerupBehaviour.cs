@@ -5,6 +5,9 @@ using UnityEngine;
 public class PowerupBehaviour : MonoBehaviour {
 
 	private float speed = 3f;
+	private enum PowerupType {TripleShot, Speed, Shield };
+	[SerializeField]
+	private PowerupType type;
 
     void Start() {
         
@@ -17,7 +20,20 @@ public class PowerupBehaviour : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision) {
 
 		if (collision.tag == "Player") {
-			collision.GetComponent<PlayerBehaviour>().TripleShotPowerOn();
+
+			switch (type) {
+				case PowerupType.TripleShot:
+					collision.GetComponent<PlayerBehaviour>().TripleShotPowerOn();
+					break;
+				case PowerupType.Speed:
+					collision.GetComponent<PlayerBehaviour>().SpeedPowerOn();
+					break;
+				case PowerupType.Shield:
+					break;
+				default:
+					break;
+			}
+			
 		}
 
 		Destroy(this.gameObject);

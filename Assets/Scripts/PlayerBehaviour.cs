@@ -22,8 +22,9 @@ public class PlayerBehaviour : MonoBehaviour {
 	private float fireRate = 0.25f;
 	private float nextFire = 0.0f;
 
+	private float powerupTime = 5.0f;
 	public bool canTripleShot = false;
-	private float tripleShotTime = 5.0f;
+	public bool canSpeed = false;
 
 	void Start() {
         transform.position = new Vector3(0, 0, 0);
@@ -54,8 +55,13 @@ public class PlayerBehaviour : MonoBehaviour {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
-        transform.Translate(Vector3.up * speed * verticalInput * Time.deltaTime);
+		if (canSpeed) {
+			transform.Translate(Vector3.right * (speed + 7f) * horizontalInput * Time.deltaTime);
+			transform.Translate(Vector3.up * (speed + 7f) * verticalInput * Time.deltaTime);
+		} else {
+			transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
+			transform.Translate(Vector3.up * speed * verticalInput * Time.deltaTime);
+		}
 
         if (transform.position.x >= xMax) {
             transform.position = new Vector3(-xMax, transform.position.y);
@@ -74,8 +80,18 @@ public class PlayerBehaviour : MonoBehaviour {
 		StartCoroutine(TripleShotPowerDownRoutine());
 	}
 
+	public void SpeedPowerOn() {
+		canSpeed = true;
+		StartCoroutine(SpeedPowerDownRoutine());
+	}
+
 	IEnumerator TripleShotPowerDownRoutine() {
-		yield return new WaitForSeconds(tripleShotTime);
+		yield return new WaitForSeconds(powerupTime);
 		canTripleShot = false;
+	}
+
+	IEnumerator SpeedPowerDownRoutine() {
+		yield return new WaitForSeconds(powerupTime);
+		canSpeed = false;
 	}
 }
