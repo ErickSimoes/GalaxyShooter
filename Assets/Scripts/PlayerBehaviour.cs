@@ -23,8 +23,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	private float nextFire = 0.0f;
 
 	private float powerupTime = 5.0f;
-	public bool canTripleShot = false;
-	public bool canSpeed = false;
+	private bool canTripleShot = false;
+	private bool canSpeed = false;
 
 	void Start() {
         transform.position = new Vector3(0, 0, 0);
