@@ -31,6 +31,10 @@ public class EnemyBehaviour : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 
+		if (collision.tag == "Player") {
+			collision.GetComponent<PlayerBehaviour>().Hit();
+			Destroy(this.gameObject);
+		}
 	}
 
 }

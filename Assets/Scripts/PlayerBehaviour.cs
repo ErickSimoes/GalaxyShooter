@@ -26,6 +26,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	private bool canTripleShot = false;
 	private bool canSpeed = false;
 
+	private int lifes = 3;
+
 	void Start() {
         transform.position = new Vector3(0, 0, 0);
     }
@@ -35,7 +37,11 @@ public class PlayerBehaviour : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space)) {
 			Shoot();
+		}
 
+		if (lifes < 1) {
+			Debug.Log("Morreu");
+			Destroy(this);
 		}
 	}
 
@@ -74,6 +80,11 @@ public class PlayerBehaviour : MonoBehaviour {
         }
 
     }
+
+	public void Hit() {
+		lifes--;
+		Debug.Log("Lifes: " + lifes);
+	}
 
 	public void TripleShotPowerOn() {
 		canTripleShot = true;
