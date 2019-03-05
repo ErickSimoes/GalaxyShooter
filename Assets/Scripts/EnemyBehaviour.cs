@@ -10,6 +10,9 @@ public class EnemyBehaviour : MonoBehaviour {
 	private float yMax = 6f;
 	private float xRandom;
 
+	[SerializeField]
+	private GameObject explosion;
+
 	void Start() {
         
     }
@@ -28,11 +31,13 @@ public class EnemyBehaviour : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == "Laser") {
 			Destroy(collision.gameObject);
+			Instantiate(explosion, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 
 		if (collision.tag == "Player") {
 			collision.GetComponent<PlayerBehaviour>().Hit();
+			Instantiate(explosion, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 	}
