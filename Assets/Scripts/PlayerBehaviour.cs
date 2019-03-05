@@ -43,8 +43,9 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 
 		if (lifes < 1) {
-			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-			Destroy(this.gameObject);
+			GameObject explosionClone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+			explosionClone.GetComponent<ExplosionBehaviour>().gameObject2Destroy = this.gameObject;
+			Destroy(this);
 		}
 	}
 
