@@ -28,6 +28,9 @@ public class PlayerBehaviour : MonoBehaviour {
 
 	private int lifes = 3;
 
+	[SerializeField]
+	private GameObject explosionPrefab;
+
 	void Start() {
         transform.position = new Vector3(0, 0, 0);
     }
@@ -40,8 +43,8 @@ public class PlayerBehaviour : MonoBehaviour {
 		}
 
 		if (lifes < 1) {
-			Debug.Log("Morreu");
-			Destroy(this);
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+			Destroy(this.gameObject);
 		}
 	}
 
