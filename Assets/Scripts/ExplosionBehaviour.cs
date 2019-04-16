@@ -11,13 +11,13 @@ public class ExplosionBehaviour : MonoBehaviour {
 	void Start() {
 		animator = GetComponent<Animator>();
 		StartCoroutine(DestroyGameObjectWithDelay());
-    }
+	}
 
-    void Update() {
+	void Update() {
 		if (!AnimationIsPlaying()) {
 			Destroy(this.gameObject);
 		}
-    }
+	}
 
 	IEnumerator DestroyGameObjectWithDelay() {
 		yield return new WaitForSeconds(wait);
