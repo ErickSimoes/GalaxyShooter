@@ -40,6 +40,12 @@ public class EnemyBehaviour : MonoBehaviour {
 			Instantiate(explosion, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
+
+		if (collision.tag == "Shield") {
+			Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy(collision.gameObject);
+			Destroy(this.gameObject);
+		}
 	}
 
 }

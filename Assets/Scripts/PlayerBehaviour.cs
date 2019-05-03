@@ -17,11 +17,13 @@ public class PlayerBehaviour : MonoBehaviour {
 
     [SerializeField]
     private GameObject laserPrefab = null;
+	[SerializeField]
+	private GameObject shieldPrefab;
 
 	[SerializeField]
 	private float fireRate = 0.25f;
 	private float nextFire = 0.0f;
-
+	
 	private float powerupTime = 5.0f;
 	private bool canTripleShot = false;
 	private bool canSpeed = false;
@@ -98,6 +100,10 @@ public class PlayerBehaviour : MonoBehaviour {
 	public void SpeedPowerOn() {
 		canSpeed = true;
 		StartCoroutine(SpeedPowerDownRoutine());
+	}
+
+	public void ShieldPowerupOn() {
+		Instantiate(shieldPrefab, transform.position, Quaternion.identity, transform);
 	}
 
 	IEnumerator TripleShotPowerDownRoutine() {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerupBehaviour : MonoBehaviour {
 
-	private float speed = 3f;
+	private float speed = 2f;
 	private enum PowerupType {TripleShot, Speed, Shield };
 	[SerializeField]
 	private PowerupType type;
@@ -29,6 +29,7 @@ public class PowerupBehaviour : MonoBehaviour {
 					collision.GetComponent<PlayerBehaviour>().SpeedPowerOn();
 					break;
 				case PowerupType.Shield:
+					collision.GetComponent<PlayerBehaviour>().ShieldPowerupOn();
 					break;
 				default:
 					break;
@@ -37,6 +38,5 @@ public class PowerupBehaviour : MonoBehaviour {
 		}
 
 		Destroy(this.gameObject);
-
 	}
 }
