@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour {
 
@@ -29,6 +31,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	private bool canSpeed = false;
 
 	private int lifes = 3;
+	public int score = 0;
+	public Text scoreText;
 
 	[SerializeField]
 	private GameObject explosionPrefab;
@@ -47,18 +51,32 @@ public class PlayerBehaviour : MonoBehaviour {
 		if (lifes < 1) {
 			GameObject explosionClone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 			explosionClone.GetComponent<ExplosionBehaviour>().gameObject2Destroy = this.gameObject;
-			Destroy(this);
+			//Destroy(this);
+			//GetComponent<SpriteRenderer>().enabled = false;
+			StartCoroutine(GoToGameOverScene());
 		}
+
+		scoreText.text = score.ToString();
+	}
+
+	IEnumerator GoToGameOverScene() {
+		print("Comecou a corroutina");
+		yield return new WaitForSeconds(5f);
+		print("partiu proxima scena");
+		SceneManager.LoadScene("GameOver");
 	}
 
 	private void Shoot() {
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
-			Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f), Quaternion.identity);
-
+			GameObject laser1 = Instantiate(laserPrefab, transform.position + new Vector3(0, 0.8f), Quaternion.identity);
+			laser1.GetComponent<LaserBehaviour>().player = this.gameObject;
 			if (canTripleShot) {
-				Instantiate(laserPrefab, transform.position + new Vector3(-0.55f, -0.03f), Quaternion.identity);
-				Instantiate(laserPrefab, transform.position + new Vector3(0.55f, -0.03f), Quaternion.identity);
+				GameObject laser2 = Instantiate(laserPrefab, transform.position + new Vector3(-0.55f, -0.03f), Quaternion.identity);
+				GameObject laser3 = Instantiate(laserPrefab, transform.position + new Vector3(0.55f, -0.03f), Quaternion.identity);
+
+				laser2.GetComponent<LaserBehaviour>().player = this.gameObject;
+				laser3.GetComponent<LaserBehaviour>().player = this.gameObject;
 			}
 		}
 	}

@@ -6,6 +6,7 @@ public class LaserBehaviour : MonoBehaviour {
 
 	[SerializeField]
 	private float speed = 10;
+	public GameObject player;
     
     void Start() {
 
@@ -18,4 +19,10 @@ public class LaserBehaviour : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+	private void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.tag == "Finish") {
+			player.GetComponent<PlayerBehaviour>().score++;
+		}
+	}
 }
