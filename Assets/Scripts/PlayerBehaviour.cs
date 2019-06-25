@@ -51,8 +51,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		if (lifes < 1) {
 			GameObject explosionClone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 			explosionClone.GetComponent<ExplosionBehaviour>().gameObject2Destroy = this.gameObject;
-			//Destroy(this);
-			//GetComponent<SpriteRenderer>().enabled = false;
+			GetComponent<SpriteRenderer>().enabled = false;
 			StartCoroutine(GoToGameOverScene());
 		}
 
@@ -60,9 +59,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	}
 
 	IEnumerator GoToGameOverScene() {
-		print("Comecou a corroutina");
 		yield return new WaitForSeconds(5f);
-		print("partiu proxima scena");
 		SceneManager.LoadScene("GameOver");
 	}
 

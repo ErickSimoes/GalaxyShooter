@@ -21,7 +21,7 @@ public class LaserBehaviour : MonoBehaviour {
     }
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.tag == "Finish") {
+		if (collision.tag == "Enemy") {
 			player.GetComponent<PlayerBehaviour>().score++;
 		}
 	}

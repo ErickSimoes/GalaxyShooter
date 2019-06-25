@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerupBehaviour : MonoBehaviour {
 
-	private float speed = 2f;
+	private float speed = 1f;
 	private enum PowerupType {TripleShot, Speed, Shield };
 	[SerializeField]
 	private PowerupType type;
